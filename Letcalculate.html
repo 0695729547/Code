@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple calculator</title>
+    <style>
+        body {
+            background-color:auto;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+        }
+
+        .container {
+            background-color:black;
+            padding: 30px;
+            width: fit-content;
+            border-radius: 5px;
+            margin: 10px 10px 10px 10px;
+        }
+
+        .row button {
+            width: 75px;
+            height: 75px;
+            background-color: grey;
+            margin: 1px;
+            border-radius: 20px;
+            color: black;
+            padding: 15px;
+            font-weight: bold;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .calculator input {
+            height: 100px;
+            text-align:left;
+            color: black;
+            flex: 1;
+            box-shadow: none;
+            font-size: 30px;
+            background-color:lavender;
+            font-family: sans-serif;
+            font-weight: bold;
+            width: 60%; border:solid; border-color:blue;
+        }
+
+        .calculator {
+            justify-content:auto;
+            display:flex;
+            font-size: large;
+            font-weight: bold;
+        }
+
+        .row button:hover {
+            background-color: #616064;
+        }
+
+        .row button:active {
+            background-color: #929297;
+        }
+
+        .row #equ {
+            width: 238px;
+            cursor: pointer;
+        }
+
+        .row #del {
+            color: black;
+            background-color: red;
+        }
+
+        .row #ac {
+            color: black;
+            background-color: green;
+        }
+
+        .main {
+            padding: 2px;
+            background-color: rgb(20, 23, 26);
+            border-radius: 5px;
+        }
+    </style>
+    <body>
+        <div class="container">
+            <div class="calculator">
+                <input type="text" placeholder="0" id="inputext" disabled>
+            </div>
+            <div>
+                <div class="main">
+                    <div class="row">
+                        <button onclick="pressNum('7')">7</button>
+                        <button onclick="pressNum('8')">8</button>
+                        <button onclick="pressNum('9')">9</button>
+                        <button id="ac" onclick="pressClearAll()">AC</button>
+                        <button id="del" onclick="pressClear()">Del</button>
+                    </div>
+                    <div class="row">
+                        <button onclick="pressNum('4')">4</button>
+                        <button onclick="pressNum('5')">5</button>
+                        <button onclick="pressNum('6')">6</button>
+                        <button onclick="pressNum('*')">&times;</button>
+                        <button onclick="pressNum('/')">&div;</button>
+                    </div>
+                    <div class="row">
+                        <button onclick="pressNum('1')">1</button>
+                        <button onclick="pressNum('2')">2</button>
+                        <button onclick="pressNum('3')">3</button>
+                        <button onclick="pressNum('+')">&plus;</button>
+                        <button onclick="pressNum('-')">&minus;</button>
+                    </div>
+                    <div class="row">
+                        <button onclick="pressNum('0')">0</button>
+                        <button onclick="pressNum('.')">.</button>
+                        <button onclick="pressNum('^')">^</button>
+                        <button onclick="pressNum('√')">√</button>
+                        <button onclick="pressNum('log')">log</button>
+                    </div>
+                    <div class="row">
+                        <button onclick="pressNum('sinh')">sinh</button>
+                        <button onclick="pressNum('cosh')">cosh</button>
+                        <button onclick="pressNum('tanh')">tanh</button>
+                        <button onclick="pressNum('sin')">sin</button>
+                        <button onclick="pressNum('cos')">cos</button>
+                    </div>
+                    <div class="row">
+                        <button onclick="pressNum('tan')">tan</button>
+                        <button onclick="pressNum('pi')">π</button>
+                        <button onclick="pressNum('e')">e</button>
+                        <button onclick="pressNum('(')"> ( </button>
+                        <button onclick="pressNum(')')"> ) </button>
+                    </div>
+                  <div class="row">
+                        <button onclick="pressNum('00')">00</button>
+                        <button onclick="pressNum('%')">%</button>
+                        <button id="equ" onclick="calculateResult('=')">&Equal;</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript">
+        let result = document.getElementById("inputext");
+
+        let pressNum = (number) => {
+            result.value += number;
+        };
+
+        let calculateResult = () => {
+            try {
+                let pen = result.value;
+
+                // Trigonometric functions
+                pen = pen.replace(/sin(\d+)/g, (_, angle) => Math.sin(degToRad(parseFloat(angle))));
+                pen = pen.replace(/cos(\d+)/g, (_, angle) => Math.cos(degToRad(parseFloat(angle))));
+                pen = pen.replace(/tan(\d+)/g, (_, angle) => Math.tan(degToRad(parseFloat(angle))));
+                pen = pen.replace(/asin(\d+)/g, (_, angle) => Math.asin(degToRad(parseFloat(angle))));
+                pen = pen.replace(/acos(\d+)/g, (_, angle) => Math.acos(degToRad(parseFloat(angle))));
+                pen = pen.replace(/atan(\d+)/g, (_, angle) => Math.atan(degToRad(parseFloat(angle))));
+
+                // Hyperbolic functions
+                pen = pen.replace(/sinh(\d+)/g, (_, angle) => Math.sinh(degToRad(parseFloat(angle))));
+                pen = pen.replace(/cosh(\d+)/g, (_, angle) => Math.cosh(degToRad(parseFloat(angle))));
+                pen = pen.replace(/tanh(\d+)/g, (_, angle) => Math.tanh(degToRad(parseFloat(angle))));
+
+                // Logarithmic functions
+                pen = pen.replace(/log(\d+)/g, (_, angle) => Math.log10(parseFloat(angle)));
+
+                // Powers
+                pen = pen.replace(/(\d+)\^(\d+)/g, (_, base, exp) => Math.pow(parseFloat(base), parseFloat(exp)));
+
+                // Roots
+                pen = pen.replace(/√(\d+)/g, (_, angle) => Math.sqrt(parseFloat(angle)));
+
+                // Constants
+                pen = pen.replace(/pi/g, Math.PI);
+                pen = pen.replace(/e/g, Math.E);
+
+                result.value = eval(pen);
+            } catch (err) {
+                alert("Enter a valid operation");
+            }
+        };
+
+        function pressClearAll() {
+            result.value = "";
+        }
+
+        function pressClear() {
+            result.value = result.value.slice(0, -1);
+        }
+
+        let degToRad = (deg) => {
+            return deg * (Math.PI / 180);
+        };
+    </script>
+</html>
