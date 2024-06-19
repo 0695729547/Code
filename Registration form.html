@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Form</title>
+  <style type="text/css">
+  form{
+    background-color:silver
+    
+  }
+  h1{
+    font-family:serif;
+    text-align:center;
+  }
+  p{
+    text-align:center
+    
+  }
+  body{
+    user-select:none;
+    overflow:scroll;
+    font-style:normal;
+    background-color:#31f6f5;
+  }
+  
+  .img{
+    height:100px;
+    width:100px;
+    border-radius:100%
+  }
+  
+  textarea{
+    font-family:Times New Roman;
+    margin:5px 5px 5px 5px;
+    padding:5px;
+  }
+  
+  .topnav {
+  overflow: hidden;
+  background-color: #333;
+    position: fixed;
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+.topnav a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+.topnav .icon {
+  display: none;
+  color:red;
+}
+
+@media screen and (max-width: 768px) {
+  .topnav a:not(:first-child) {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+  textarea{
+    width:320px;
+    height:100px;
+  }
+  .topnav.responsive {position: relative;}
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+    .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>WELCOME</h1>
+  </header>
+    
+</div>
+  
+  <form method="post" action="" name="registration_form" onsubmit="return reg()">
+    <h1 style="color:green"><u>Registration Form</u></h1>
+    <p><input type="image" alt="attach your picture" src="me.jpg" class="img"></p>
+    <table border="0" align="center">
+    <tr>
+      <td><label for="fname">First name:</label></td>
+      <td><input type="text" name="fname" id="fname" required></td>
+    </tr>
+    <tr>
+      <td><label for="lname">Last name:</label></td>
+      <td><input type="text" name="lname" id="lname" required></td>
+    </tr>
+    <tr>
+      <td><label for="age">Age:</label></td>
+      <td><input type="number" name="age" id="age" max="40" required></td>
+    </tr>
+    <tr>
+      <td><label for="email">E-mail:</label></td>
+      <td><input type="email" name="email" id="email" required></td>
+    </tr>
+    <tr>
+      <td><label for="pass">Password:</label></td>
+      <td><input type="password" minlength="4" name="password" id="pass" required></td>
+    </tr>
+    <tr>
+      <td><label for="cpass">Confirm Password:</label></td>
+      <td><input type="password" minlength="4" name="cpassword" id="cpass" required></td>
+    </tr>
+    </table>
+    <p>
+      <label>SEX:</label>
+      <input type="radio" name="sex" value="Male" required>Male
+      <input type="radio" name="sex" value="Female" required>Female
+    </p>
+    <p>
+      <label>Checkbox:</label>
+      <input type="checkbox" name="status" value="student">I am a student
+      <input type="checkbox" name="status" value="business">I am a business-man
+    </p>
+    <p>Birthday:</p>
+    <p>
+      Day:<select name="day" required>
+        <option value="" disabled selected>Select</option>
+        <option>1</option><option>2</option><option>3</option>
+        <option>4</option><option>5</option><option>6</option>
+        <option>7</option><option>8</option><option>9</option>
+        <option>10</option><option>11</option><option>12</option>
+        <option>13</option><option>14</option><option>15</option>
+        <option>16</option><option>17</option><option>18</option>
+        <option>19</option><option>20</option><option>21</option>
+        <option>22</option><option>23</option><option>24</option>
+        <option>25</option><option>26</option><option>27</option>
+        <option>28</option><option>29</option><option>30</option>
+      </select>
+      Month:<select name="month" required>
+        <option value="" disabled selected>Select</option>
+        <option>1</option><option>2</option><option>3</option>
+        <option>4</option><option>5</option><option>6</option>
+        <option>7</option><option>8</option><option>9</option>
+        <option>10</option><option>11</option><option>12</option>
+      </select>
+      Year:<select name="year" required>
+        <option value="" disabled selected>Select</option>
+        <option>1990</option><option>1991</option><option>1992</option>
+        <option>1993</option><option>1994</option><option>1995</option>
+        <option>1996</option><option>1997</option><option>1998</option>
+        <option>1999</option><option>2000</option><option>2001</option>
+        <option>2002</option><option>2003</option><option>2004</option>
+        <option>2005</option><option>2006</option><option>2007</option>
+        <option>2008</option><option>2009</option><option>2010</option>
+        <option>2011</option><option>2012</option><option>2013</option>
+        <option>2014</option><option>2015</option><option>2016</option>
+        <option>2017</option><option>2018</option><option>2019</option>
+        <option>2020</option><option>2021</option><option>2022</option>
+        <option>2023</option><option>2024</option>
+      </select>
+    </p>
+    <p>
+    <label for="explain">Why do you apply?</label><br>
+    <textarea name="explain" id="explain" placeholder="Explain briefly..." required></textarea>
+    </p>
+    <p>
+      <label for="cvfile">What is your curriculum vitae (cv):</label><input type="file" id="cvfile" name="cvfile" multiple="multiple" required>
+    </p>
+    <p>
+      <label for="submitBtn">Submit Button:</label>
+      <input type="submit" value="submit" id="submitBtn"
+        style="background-color:green">
+    </p>
+    <p>
+      <label for="resetBtn">Reset Button:</label>
+      <input type="reset" value="reset" id="resetBtn" style="background-color:yellow">
+    </p>
+
+  </form>
+  
+  <footer>
+    <p>For help call me through tel:<a href="tel:0695729547">0695729547</a></p>
+  </footer>
+   <script>
+
+function reg(){
+  var z = document.getElementById('pass').value;
+  var y = document.getElementById('cpass').value;
+  
+  if(z !== y){
+    alert("Password not Matched!!");
+    return false; // Prevent form submission
+  }
+  alert("Your information is now submitted, press 'OK'");
+  return true; // Allow form submission
+}
+</script>
+
+</body>
+</html>
